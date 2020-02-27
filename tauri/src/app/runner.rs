@@ -191,6 +191,7 @@ fn build_webview(
   let width = config.tauri.window.width;
   let height = config.tauri.window.height;
   let resizable = config.tauri.window.resizable;
+  let frameless = config.tauri.window.frameless;
   let title = config.tauri.window.title.into_boxed_str();
 
   let has_splashscreen = splashscreen_content.is_some();
@@ -200,6 +201,7 @@ fn build_webview(
     .title(Box::leak(title))
     .size(width, height)
     .resizable(resizable)
+    .frameless(frameless)
     .debug(debug)
     .user_data(())
     .invoke_handler(move |webview, arg| {
@@ -239,7 +241,7 @@ fn build_webview(
     .handle()
     .dispatch(|_webview| _webview.eval(include_str!(concat!(env!("TAURI_DIR"), "/tauri.js"))))?;
   }
-  
+
   Ok(webview)
 }
 

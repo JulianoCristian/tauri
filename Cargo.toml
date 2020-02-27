@@ -5,3 +5,6 @@ members = [
   "tauri-updater",
   "tauri-utils"
 ]
+
+[patch.crates-io]
+web-view = { git = "https://github.com/Boscop/web-view" }
